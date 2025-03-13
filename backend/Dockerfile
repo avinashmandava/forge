@@ -1,21 +1,6 @@
-# Base image
-FROM node:18-alpine
-
-# Set working directory
+FROM python:3.11-slim
 WORKDIR /app
-
-# Copy package.json and install dependencies
-COPY package.json .
-RUN npm install
-
-# Copy source code
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 COPY . .
-
-# Build TypeScript
-RUN npm run build
-
-# Expose port
-EXPOSE 3000
-
-# Start the app
-CMD ["node", "dist/server.js"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
