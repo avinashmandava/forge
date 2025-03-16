@@ -8,6 +8,10 @@ class ExtractRequest(BaseModel):
     tenant_id: str
     text: str
 
+class QueryRequest(BaseModel):
+    tenant_id: str
+    query: str
+
 class LogEntry(BaseModel):
     company: str
     tenant_id: str
